@@ -16,11 +16,11 @@ public class User {
     @Column(name="password")
     private String password;
 
-    @Column(name="first_name")
-    private String first_name;
+    @Column(name="firstName")
+    private String firstName;
 
-    @Column(name="last_name")
-    private String last_name;
+    @Column(name="lastName")
+    private String lastName;
 
     @Column(name="age")
     private int age;
@@ -49,22 +49,22 @@ public class User {
         this.password = password;
     }
 
-    public void setFirst_name(String firstName) {
-        this.first_name = firstName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setLast_name(String LastName) {
-        this.last_name = LastName;
+    public void setLastName(String LastName) {
+        this.lastName = LastName;
     }
 
     public void setAge(int age) {
         this.age = age;
     }
 
-    public String getFirst_name() { return first_name; }
+    public String getFirstName() { return firstName; }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
     public int getAge() {

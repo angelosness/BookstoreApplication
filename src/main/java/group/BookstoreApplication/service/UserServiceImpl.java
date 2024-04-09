@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
         if(password.length() < 8)     //If user entered a password with less than 8 characters or didn't enter a password at all.
             return false;
 
-        if (userRepository.findByUsername(theUser.getUsername()) != null)   //If the user entered an already used username
+        if (userRepository.findByUsername(username) != null)   //If the user entered an already used username
             return false;
 
         userRepository.save(theUser);
