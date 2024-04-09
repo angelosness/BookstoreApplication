@@ -30,7 +30,7 @@
                             class="form-control mb-4 col-4" placeholder="Enter your Last Name">
 
                      <input type="number" th:field="*{age}"
-                            class="form-control mb-4 col-4" placeholder="Enter your Age" min="1" max="100">
+                            class="form-control mb-4 col-4" placeholder="Enter your Age" min="1" max="125" oninput="validity.valid||(value='');">
 
                      <input type="text" th:field="*{username}"
                             class="form-control mb-4 col-4" placeholder="Enter a Username">
@@ -51,4 +51,12 @@
               </div>
        </div>
 </body>
+
+<script>
+    window.onload = function() {
+        document.getElementById('age').value = '';
+    };
+</script>
+
 </html>
+
