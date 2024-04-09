@@ -37,6 +37,16 @@ public class User {
         return password;
     }
 
+    public String getFirstName() { return firstName; }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -53,21 +63,11 @@ public class User {
         this.firstName = firstName;
     }
 
-    public void setLastName(String LastName) {
-        this.lastName = LastName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public String getFirstName() { return firstName; }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public int getAge() {
-        return age;
     }
 }
