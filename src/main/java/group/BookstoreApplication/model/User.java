@@ -16,6 +16,15 @@ public class User {
     @Column(name="password")
     private String password;
 
+    @Column(name="first_name")
+    private String first_name;
+
+    @Column(name="last_name")
+    private String last_name;
+
+    @Column(name="age")
+    private int age;
+
     public int getId() {
         return id;
     }
@@ -38,5 +47,29 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setFirstName(String firstName) {
+        this.first_name = firstName;
+    }
+
+    public void setLastName(String LastName) {
+        this.last_name = LastName;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void getFirstName() {
+        this.first_name = first_name;
+    }
+
+    public void getLastName() {
+        this.last_name = last_name;
+    }
+
+    public int getAge() {
+        return this.age;
     }
 }

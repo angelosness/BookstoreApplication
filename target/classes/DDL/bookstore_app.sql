@@ -8,6 +8,9 @@ CREATE TABLE `users` (
     `id` int NOT NULL AUTO_INCREMENT,
     `username` text DEFAULT NULL,
     `password` text DEFAULT NULL,
+    `first_name` text DEFAULT NULL,
+    `last_name` text DEFAULT NULL,
+    `age` int DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 --

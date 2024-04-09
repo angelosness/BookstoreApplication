@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Bookstore Application - User Registration</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <form th:action="@{/save}"
+              th:object="${user}" method="POST">
+
+            <input type="text" th:field="*{first_name}"
+                   class="form-control mb-4 col-4" placeholder="Enter your First Name">
+
+            <input type="text" th:field="*{last_name}"
+                   class="form-control mb-4 col-4" placeholder="Enter your Last Name">
+
+            <input type="text" th:field="*{age}"
+                   class="form-control mb-4 col-4" placeholder="Enter your Age">
+
+            <input type="text" th:field="*{username}"
+                   class="form-control mb-4 col-4" placeholder="Enter a Username">
+
+            <input type="password" th:field="*{password}"
+                   class="form-control mb-4 col-4" placeholder="Enter a Password">
+
+
+            <button type="submit" class="btn btn-info mb-2">Register</button>
+
+        </form>
+
+        <a>You already have an account? Click here to </a>
+        <a th:href="@{/login}">here</a>
+        <a>to login</a>
+
+    </div>
+
+</body>
+</html>

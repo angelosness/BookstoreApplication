@@ -28,9 +28,24 @@ public class UserController {
         return "login";
     }
 
+    @RequestMapping("/register")
+    public String register(Model theModel) {
+        User theUser = new User();
+
+        theModel.addAttribute("user", theUser);
+
+        return "register";
+    }
+
     @RequestMapping("/auth")
     public String authorizeUser(@ModelAttribute("user") User theUser) {
         if (userService.userLogin(theUser)) return "redirect:/homepage";
+        else return "redirect:/login";
+    }
+
+    @RequestMapping("/save")
+    public String createUser(@ModelAttribute("User") User theUser) {
+        if (!(userService.userRegister(theUser))) return "redirect:/register";
         else return "redirect:/login";
     }
 }
