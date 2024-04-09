@@ -11,23 +11,30 @@
 
 <body>
     <div class="container">
+        <br><br><br><br><br><br>
 
-        <form th:action="@{/auth}"
-                th:object="${user}" method="POST">
+        <div class="row">
+            <div class="col" style="text-align:right">
+                <img th:src="@{images/img_books.png}" alt="">
+            </div>
 
-            <input type="text" th:field="*{username}"
-                    class="form-control mb-4 col-4" placeholder="Username">
+            <div class="col-md-7">
+                <form th:action="@{/auth}"
+                        th:object="${user}" method="POST">
 
-            <input type="text" th:field="*{password}"
-                   class="form-control mb-4 col-4" placeholder="Password">
+                    <input type="text" th:field="*{username}"
+                            class="form-control mb-4 col-6" placeholder="Username">
 
-            <button type="submit" class="btn btn-info mb-2">Login</button>
+                    <input type="password" th:field="*{password}"
+                           class="form-control mb-4 col-6" placeholder="Password">
 
-        </form>
+                    <button type="submit" class="btn btn-info mb-2">Login</button>
 
-        <a th:href="@{/register}">Create an Account</a>
+                </form>
 
+                <a th:href="@{/register}">Create an Account</a>
+            </div>
+        </div>
     </div>
-
 </body>
 </html>

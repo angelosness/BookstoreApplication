@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @RequestMapping("/save")
-    public String createUser(@ModelAttribute("User") User theUser) {
+    public String createUser(@ModelAttribute("user") User theUser) {
         if (!(userService.userRegister(theUser))) return "redirect:/register";
         else return "redirect:/login";
     }

@@ -49,11 +49,11 @@ public class User {
         this.password = password;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirst_name(String firstName) {
         this.first_name = firstName;
     }
 
-    public void setLastName(String LastName) {
+    public void setLast_name(String LastName) {
         this.last_name = LastName;
     }
 
@@ -61,15 +61,13 @@ public class User {
         this.age = age;
     }
 
-    public void getFirstName() {
-        this.first_name = first_name;
-    }
+    public String getFirst_name() { return first_name; }
 
-    public void getLastName() {
-        this.last_name = last_name;
+    public String getLast_name() {
+        return last_name;
     }
 
     public int getAge() {
-        return this.age;
+        return age;
     }
 }
