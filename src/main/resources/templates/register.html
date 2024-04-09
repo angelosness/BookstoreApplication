@@ -6,50 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-    <title>Bookstore Application - User Registration</title>
+    <title>Register</title>
 </head>
 
 <body>
-       <div class="container">
-              <br><br><br><br><br><br>
+    <div class="container">
+        <br><br><br><br><br><br>
       
-              <div class="row">
-                  <div class="col" style="text-align:right">
-                      <img th:src="@{images/img_books.png}" alt="">
-                  </div>
+        <div class="row">
+            <div class="col" style="text-align:right">
+                <img th:src="@{images/img_books.png}" alt="">
+            </div>
       
-                  <div class="col-md-7">
+            <div class="col-md-7">
+                <form th:action="@{/save}"
+                    th:object="${user}" method="POST">
 
-                     <form th:action="@{/save}"
-                            th:object="${user}" method="POST">
+                    <input type="text" th:field="*{firstName}"
+                        class="form-control mb-4 col-4" placeholder="Enter your First Name">
 
-                     <input type="text" th:field="*{firstName}"
-                            class="form-control mb-4 col-4" placeholder="Enter your First Name">
+                    <input type="text" th:field="*{lastName}"
+                        class="form-control mb-4 col-4" placeholder="Enter your Last Name">
 
-                     <input type="text" th:field="*{lastName}"
-                            class="form-control mb-4 col-4" placeholder="Enter your Last Name">
+                    <input type="number" th:field="*{age}"
+                        class="form-control mb-4 col-4" placeholder="Enter your Age" min="1" max="125" oninput="validity.valid||(value='');">
 
-                     <input type="number" th:field="*{age}"
-                            class="form-control mb-4 col-4" placeholder="Enter your Age" min="1" max="125" oninput="validity.valid||(value='');">
+                    <input type="text" th:field="*{username}"
+                        class="form-control mb-4 col-4" placeholder="Enter a Username">
 
-                     <input type="text" th:field="*{username}"
-                            class="form-control mb-4 col-4" placeholder="Enter a Username">
+                    <input type="password" th:field="*{password}"
+                        class="form-control mb-4 col-4" placeholder="Enter a Password">
 
-                     <input type="password" th:field="*{password}"
-                            class="form-control mb-4 col-4" placeholder="Enter a Password">
+                    <button type="submit" class="btn btn-info mb-2">Register</button>
 
+                </form>
 
-                     <button type="submit" class="btn btn-info mb-2">Register</button>
+                <a>You already have an account? Click</a>
+                <a th:href="@{/login}">here</a>
+                <a>to login.</a>
 
-                     </form>
-
-                     <a>You already have an account? Click</a>
-                     <a th:href="@{/login}">here</a>
-                     <a>to login</a>
-
-                 </div>
-              </div>
-       </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 <script>
