@@ -22,6 +22,8 @@
                 <form th:action="@{/save}"
                     th:object="${user}" method="POST">
 
+                    <input type="hidden" th:field="*{id}">
+
                     <input type="text" th:field="*{firstName}"
                         class="form-control mb-4 col-4" placeholder="Enter your First Name" required>
 
