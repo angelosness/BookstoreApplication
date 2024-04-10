@@ -23,16 +23,21 @@
                         th:object="${user}" method="POST">
 
                     <input type="text" th:field="*{username}"
-                            class="form-control mb-4 col-6" placeholder="Username">
+                            class="form-control mb-4 col-6" placeholder="Username" required>
 
                     <input type="password" th:field="*{password}"
-                           class="form-control mb-4 col-6" placeholder="Password">
+                           class="form-control mb-3 col-6" placeholder="Password" required>
+
+                    <div th:if="${param.error}" class="text-danger font-weight-light mb-2">
+                        Invalid username and password.
+                    </div>
 
                     <button type="submit" class="btn btn-info mb-2">Login</button>
 
                 </form>
-                
+
                 <a th:href="@{/register}">Create an Account</a>
+
             </div>
         </div>
     </div>

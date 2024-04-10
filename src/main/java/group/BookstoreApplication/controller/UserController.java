@@ -40,12 +40,12 @@ public class UserController {
     @RequestMapping("/auth")
     public String authorizeUser(@ModelAttribute("user") User theUser) {
         if (userService.userLogin(theUser)) return "redirect:/homepage";
-        else return "redirect:/login";
+        else return "redirect:/login?error";
     }
 
     @RequestMapping("/save")
-    public String createUser(@ModelAttribute("user") User theUser) {
-        if (!(userService.userRegister(theUser))) return "redirect:/register";
-        else return "redirect:/login";
+    public String saveUser(@ModelAttribute("user") User theUser) {
+        if (userService.userRegister(theUser)) return "redirect:/login";
+        else return "redirect:/register?error";
     }
 }

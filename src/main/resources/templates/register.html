@@ -23,25 +23,29 @@
                     th:object="${user}" method="POST">
 
                     <input type="text" th:field="*{firstName}"
-                        class="form-control mb-4 col-4" placeholder="Enter your First Name">
+                        class="form-control mb-4 col-4" placeholder="Enter your First Name" required>
 
                     <input type="text" th:field="*{lastName}"
-                        class="form-control mb-4 col-4" placeholder="Enter your Last Name">
+                        class="form-control mb-4 col-4" placeholder="Enter your Last Name" required>
 
                     <input type="number" th:field="*{age}"
-                        class="form-control mb-4 col-4" placeholder="Enter your Age" min="1" max="125" oninput="validity.valid||(value='');">
+                        class="form-control mb-4 col-4" placeholder="Enter your Age" min="1" max="100" oninput="validity.valid||(value='');" required>
 
                     <input type="text" th:field="*{username}"
-                        class="form-control mb-4 col-4" placeholder="Enter a Username">
+                        class="form-control mb-4 col-4" placeholder="Enter a Username" required>
 
                     <input type="password" th:field="*{password}"
-                        class="form-control mb-4 col-4" placeholder="Enter a Password">
+                        class="form-control mb-3 col-4" placeholder="Enter a Password" minlength="8" required>
+
+                    <div th:if="${param.error}" class="text-danger font-weight-light mb-2">
+                        Username already exists.
+                    </div>
 
                     <button type="submit" class="btn btn-info mb-2">Register</button>
 
                 </form>
 
-                <a>You already have an account? Click</a>
+                <a>Already have an account? Click</a>
                 <a th:href="@{/login}">here</a>
                 <a>to login.</a>
 
@@ -53,7 +57,7 @@
 <script>
     window.onload = function() {
         document.getElementById('age').value = '';
-    };
+    }
 </script>
 
 </html>

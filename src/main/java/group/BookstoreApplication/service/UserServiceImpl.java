@@ -24,17 +24,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean userRegister(User theUser) {
-        //Checking if credentials are valid:
-        String username = theUser.getUsername();
-        String password = theUser.getPassword();
-
-        if (username.isEmpty() || password.isEmpty())           //If user entered a blank username.
-            return false;
-
-        if (password.length() < 8)                              //If user entered a password with less than 8 characters or didn't enter a password at all.
-            return false;
-
-        if (userRepository.findByUsername(username) != null)    //If the user entered an already used username
+        //If user entered an already used username.
+        if (userRepository.findByUsername(theUser.getUsername()) != null)
             return false;
 
         userRepository.save(theUser);
