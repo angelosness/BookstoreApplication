@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+
+    <!-- Set the Character set for the page -->
+    <meta charset="utf-8">
+
+    <!-- Let the page adapt to client device -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Link to external resource (css, search, etc.) -->
+    <!-- Link to Bootstrap CSS in this case -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+    <title>Bookstore</title>
+    <style>
+        body {
+          margin: 0;
+          font-size: 26px;
+          font-family: 'Poppins';
+        }
+
+        .topnav {
+          overflow: hidden;
+          background-color: #333;
+          display: flex;
+          justify-content: flex-end;
+          font-size: 32px;
+          padding-left: 20px;
+          font-family: 'Poppins';
+
+        }
+
+        .topnav a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        }
+
+        .topnav a:hover {
+          background-color: #ddd;
+          color: black;
+        }
+
+        .topnav a.active {
+          background-color: #04AA6D;
+          color: white;
+        }
+
+        .topnav_logout {
+          overflow: hidden;
+          background-color: #333;
+        }
+
+        .topnav_logout a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        }
+
+        .topnav_logout a:hover {
+          background-color: #990000;
+          color: white;
+        }
+
+        .topnav_logout a.active {
+          background-color: #550000;
+          color: white;
+        }
+
+
+         .logo {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         padding-right: 100px;
+         }
+
+        .appName {
+        font-size: 28px;
+        font-family: 'Poppins';
+        }
+
+        .searchbar{
+        text-align: center;
+        }
+
+        .searchbar [type=text]{
+        width: 40%;
+        font-size: 18pt;
+        border-radius: 20px;
+        text-align: center
+        }
+
+        .button_container {
+        text-align: center;
+        }
+
+        .button_row {
+        text-align: center;
+        }
+
+        .divider{
+        width:5px;
+        height:auto;
+        display:inline-block;
+        }
+
+        .message{
+        color: white;
+        font-size: 2px;
+        font-family: 'Poppins';
+        }
+
+    </style>
+</head>
+<body>
+
+
+<div class = "topnav">
+    <div class="topnav">
+            <a href="#Profile">Profile</a>
+        </div>
+        <div class="topnav_logout">
+            <a href="#Logout">Logout</a>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="logo">
+        <img src="home_ico.jpg" width="25%" height="25%">
+        <div class="appName">
+            <H1>Bookstore Application</H1>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="searchbar">
+        <input type="text" placeholder="Search a Book!">
+    </div>
+
+    <br>
+
+    <div class="button_container">
+        <div class="button_row">
+            <button type="button" class="btn btn-secondary">Search Type</button>
+            <div class="divider"></div>
+            <button type="button" class="btn btn-secondary">Filters</button>
+            <div class="divider"></div>
+            <button type="button" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+
+    </div>
+</body>
+</html>
