@@ -2,6 +2,7 @@ package group.BookstoreApplication.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,6 +19,11 @@ public class BookAuthor {
     @ManyToMany(mappedBy="bookAuthors")
     private List<Book> books;
 
+
+    public BookAuthor() {
+        super();
+        books = new ArrayList<Book>();
+    }
 
     public int getId() {
         return id;

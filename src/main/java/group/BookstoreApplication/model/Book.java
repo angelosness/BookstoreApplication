@@ -2,6 +2,7 @@ package group.BookstoreApplication.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -33,6 +34,12 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name="user_id"))
     private List<User> requestingUsers;
 
+
+    public Book() {
+        super();
+        bookAuthors = new ArrayList<BookAuthor>();
+        requestingUsers = new ArrayList<User>();
+    }
 
     public int getId() {
         return id;

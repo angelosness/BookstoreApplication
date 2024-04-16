@@ -36,13 +36,9 @@ CREATE TABLE `books` (
     `id` int NOT NULL AUTO_INCREMENT,
     `title` text DEFAULT NULL,
     `category_id` int,
-    `user_id` int,
 
      PRIMARY KEY (`id`),
      FOREIGN KEY (`category_id`) REFERENCES book_categories(`id`)
-     ON DELETE CASCADE
-     ON UPDATE CASCADE,
-     FOREIGN KEY (`user_id`) REFERENCES users(`id`)
      ON DELETE CASCADE
      ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

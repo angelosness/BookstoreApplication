@@ -1,9 +1,12 @@
 package group.BookstoreApplication.service;
 
 import group.BookstoreApplication.dao.UserDAO;
+import group.BookstoreApplication.model.Book;
 import group.BookstoreApplication.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -30,5 +33,15 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(theUser);
         return true;
+    }
+
+    @Override
+    public void addOffer(User theUser, Book theBook) {
+        // add book to personal list
+        List<Book> bookOffers = theUser.getBookOffers();
+        bookOffers.add(theBook);
+
+        // update user
+        userRepository.save(theUser);
     }
 }

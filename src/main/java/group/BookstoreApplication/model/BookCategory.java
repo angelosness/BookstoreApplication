@@ -2,6 +2,7 @@ package group.BookstoreApplication.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,9 +16,14 @@ public class BookCategory {
     @Column(name="category_name")
     private String categoryName;
 
-    @OneToMany(mappedBy="bookCategory")       // mappedBy for bidirectional association
+    @OneToMany(mappedBy="bookCategory")       // mappedBy for the other side of the association
     private List<Book> books;
 
+
+    public BookCategory() {
+        super();
+        books = new ArrayList<Book>();
+    }
 
     public int getId() {
         return id;

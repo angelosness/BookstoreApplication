@@ -2,6 +2,7 @@ package group.BookstoreApplication.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -48,10 +49,16 @@ public class User {
         inverseJoinColumns = @JoinColumn(name="category_id"))
     private List<BookCategory> favoriteCategories;
 
-    @OneToMany
-    @JoinColumn(name="user_id")             // added a user_id field in Book table, a certain book id can be offered
-    private List<Book> bookOffers;          // by one user only
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)     // if a book added to the list, create a book entry
+    private List<Book> bookOffers;
 
+
+    public User() {
+        super();
+        favoriteAuthors = new ArrayList<BookAuthor>();
+        favoriteCategories = new ArrayList<BookCategory>();
+        bookOffers = new ArrayList<Book>();
+    }
 
     public int getId() {
         return id;
