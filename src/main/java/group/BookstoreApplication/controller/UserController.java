@@ -48,4 +48,11 @@ public class UserController {
         if (userService.userRegister(theUser)) return "redirect:/login";
         else return "redirect:/register?error";
     }
+
+    @RequestMapping("/homepage")
+    public String openHomepage(@ModelAttribute("user") User theUser) {
+
+        // recommendations
+        return "homepage";
+    }
 }

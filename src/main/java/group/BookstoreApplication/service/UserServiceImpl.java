@@ -30,6 +30,5 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(theUser);
         return true;
-
     }
 }
