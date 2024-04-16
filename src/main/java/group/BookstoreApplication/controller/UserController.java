@@ -60,11 +60,20 @@ public class UserController {
     // same logic as login
     @RequestMapping("/offer")
     public String offerBook(Model theModel) {
-        Book theBook = new Book();
-
-        theModel.addAttribute("book", theBook);
 
         return "offer";
+    }
+
+    @RequestMapping("/request")
+    public String requestBook(Model theModel) {
+
+        return "request";
+    }
+
+    @RequestMapping("/profile")
+    public String profile(Model theModel) {
+
+        return "profile";
     }
 
     @RequestMapping("/offer/complete")
