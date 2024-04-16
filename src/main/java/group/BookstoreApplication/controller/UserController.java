@@ -1,5 +1,6 @@
 package group.BookstoreApplication.controller;
 
+import group.BookstoreApplication.model.Book;
 import group.BookstoreApplication.model.User;
 import group.BookstoreApplication.service.UserService;
 import org.springframework.ui.Model;
@@ -50,9 +51,25 @@ public class UserController {
     }
 
     @RequestMapping("/homepage")
-    public String openHomepage(@ModelAttribute("user") User theUser) {
+    public String openHomepage() {
 
         // recommendations
         return "homepage";
+    }
+
+    // same logic as login
+    @RequestMapping("/offer")
+    public String offerBook(Model theModel) {
+        Book theBook = new Book();
+
+        theModel.addAttribute("book", theBook);
+
+        return "offer";
+    }
+
+    @RequestMapping("/offer/complete")
+    public String completeOffer(@ModelAttribute("user") User theUser, @ModelAttribute("book") Book theBook) {
+        userService.addOffer(theUser,theBook);
+        return "redirect:/homepage";
     }
 }
