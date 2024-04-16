@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  font-family: 'Poppins';
+}
+
+.navbar-nav .nav-link {
+    color: white;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 100px;
+ }
+
+.appName {
+  font-size: 28px;
+  font-family: 'Poppins';
+}
+
+.searchbar{
+  text-align: center;
+}
+
+.searchbar [type=text]{
+  width: 40%;
+  font-size: 18pt;
+  border-radius: 20px;
+  text-align: center
+}
+
+.button_container {
+  text-align: center;
+}
+
+.button_row {
+  text-align: center;
+}
+
+.divider{
+  width:5px;
+  height:auto;
+  display:inline-block;
+}
+
+.message{
+  color: white;
+  font-size: 2px;
+  font-family: 'Poppins';
+}
