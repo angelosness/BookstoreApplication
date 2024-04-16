@@ -36,9 +36,13 @@ CREATE TABLE `books` (
     `id` int NOT NULL AUTO_INCREMENT,
     `title` text DEFAULT NULL,
     `category_id` int,
+    `user_id` int,
 
      PRIMARY KEY (`id`),
      FOREIGN KEY (`category_id`) REFERENCES book_categories(`id`)
+     ON DELETE CASCADE
+     ON UPDATE CASCADE,
+     FOREIGN KEY (`user_id`) REFERENCES users(`id`)
      ON DELETE CASCADE
      ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
@@ -101,6 +105,23 @@ CREATE TABLE `favorite_categories` (
     ON DELETE CASCADE
     ON UPDATE CASCADE,
     FOREIGN KEY (`category_id`) REFERENCES book_categories(`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+--
+
+-- Table for requests
+DROP TABLE IF EXISTS `requests_book`;
+
+CREATE TABLE `requests_book` (
+    `user_id` int NOT NULL,
+    `book_id` int NOT NULL,
+
+    PRIMARY KEY (`user_id`, `book_id`),
+    FOREIGN KEY (`user_id`) REFERENCES users(`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    FOREIGN KEY (`book_id`) REFERENCES books(`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );

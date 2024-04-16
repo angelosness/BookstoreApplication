@@ -23,11 +23,15 @@ public class Book {
     private List<BookAuthor> bookAuthors;
 
     @ManyToOne
-    @JoinColumn(name="category_id")
+    @JoinColumn(name="category_id")     // referenced column is always the primary key of the other table
     private BookCategory bookCategory;
 
-
-    //private List<User> requestingUsers;
+    @ManyToMany
+    @JoinTable(
+            name="requests_book",
+            joinColumns = @JoinColumn(name="book_id"),
+            inverseJoinColumns = @JoinColumn(name="user_id"))
+    private List<User> requestingUsers;
 
 
     public int getId() {
@@ -46,9 +50,9 @@ public class Book {
         return bookCategory;
     }
 
-//    public List<User> getRequestingUsers() {
-//        return requestingUsers;
-//    }
+    public List<User> getRequestingUsers() {
+        return requestingUsers;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -66,7 +70,7 @@ public class Book {
         this.bookCategory = bookCategory;
     }
 
-//    public void setRequestingUsers(List<User> requestingUsers) {
-//        this.requestingUsers = requestingUsers;
-//    }
+    public void setRequestingUsers(List<User> requestingUsers) {
+        this.requestingUsers = requestingUsers;
+    }
 }

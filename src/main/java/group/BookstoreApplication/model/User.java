@@ -48,7 +48,9 @@ public class User {
         inverseJoinColumns = @JoinColumn(name="category_id"))
     private List<BookCategory> favoriteCategories;
 
-    //private List<Book> bookOffers;
+    @OneToMany
+    @JoinColumn(name="user_id")             // added a user_id field in Book table, a certain book id can be offered
+    private List<Book> bookOffers;          // by one user only
 
 
     public int getId() {
@@ -89,9 +91,9 @@ public class User {
         return favoriteCategories;
     }
 
-//    public List<Book> getBookOffers() {
-//        return bookOffers;
-//    }
+    public List<Book> getBookOffers() {
+        return bookOffers;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -133,7 +135,7 @@ public class User {
         this.favoriteCategories = favoriteCategories;
     }
 
-//    public void setBookOffers(List<Book> bookOffers) {
-//        this.bookOffers = bookOffers;
-//    }
+    public void setBookOffers(List<Book> bookOffers) {
+        this.bookOffers = bookOffers;
+    }
 }
