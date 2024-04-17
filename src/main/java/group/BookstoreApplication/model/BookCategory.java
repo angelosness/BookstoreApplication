@@ -13,7 +13,7 @@ public class BookCategory {
     @Column(name="id")
     private int id;
 
-    @Column(name="category_name")
+    @Column(name="category_name", unique=true)
     private String categoryName;
 
     @OneToMany(mappedBy="bookCategory")       // mappedBy for the other side of the association

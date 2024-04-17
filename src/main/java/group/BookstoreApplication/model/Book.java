@@ -13,17 +13,24 @@ public class Book {
     @Column(name="id")
     private int id;
 
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User offeringUser;
+
     @Column(name="title")
     private String title;
 
-    @ManyToMany
+    // the authors are automatically added/updated when we add a book
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(                         // creates book written by author relationship
         name="writes_book",
         joinColumns = @JoinColumn(name="book_id"),
         inverseJoinColumns = @JoinColumn(name="author_id"))
     private List<BookAuthor> bookAuthors;
 
-    @ManyToOne
+    // preloaded categories - no need to cascade persist op
+    // respective category object is updated when we add a book
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name="category_id")     // referenced column is always the primary key of the other table
     private BookCategory bookCategory;
 
@@ -45,6 +52,10 @@ public class Book {
         return id;
     }
 
+    public User getOfferingUser() {
+        return offeringUser;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -63,6 +74,10 @@ public class Book {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setOfferingUser(User offeringUser) {
+        this.offeringUser = offeringUser;
     }
 
     public void setTitle(String title) {

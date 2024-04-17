@@ -41,6 +41,10 @@ public class UserServiceImpl implements UserService {
         List<Book> bookOffers = theUser.getBookOffers();
         bookOffers.add(theBook);
 
+        // add book to author list if author exists
+
+        // add book to category list
+
         // update user
         userRepository.save(theUser);
     }

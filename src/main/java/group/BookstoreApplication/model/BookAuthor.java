@@ -13,7 +13,7 @@ public class BookAuthor {
     @Column(name="id")
     private int id;
 
-    @Column(name="author_name")
+    @Column(name="author_name", unique=true)
     private String authorName;
 
     @ManyToMany(mappedBy="bookAuthors")

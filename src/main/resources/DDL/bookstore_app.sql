@@ -1,9 +1,16 @@
 CREATE DATABASE IF NOT EXISTS `bookstore_app_db`;
 USE `bookstore_app_db`;
 
--- Table for users
+DROP TABLE IF EXISTS `favorite_authors`;
+DROP TABLE IF EXISTS `favorite_categories`;
+DROP TABLE IF EXISTS `requests_book`;
+DROP TABLE IF EXISTS `writes_book`;
+DROP TABLE IF EXISTS `books`;
 DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `book_authors`;
+DROP TABLE IF EXISTS `book_categories`;
 
+-- Table for users
 CREATE TABLE `users` (
     `id` int NOT NULL AUTO_INCREMENT,
     `username` text DEFAULT NULL,
@@ -19,8 +26,6 @@ CREATE TABLE `users` (
 --
 
 -- Table for book categories
-DROP TABLE IF EXISTS `book_categories`;
-
 CREATE TABLE `book_categories` (
     `id` int NOT NULL AUTO_INCREMENT,
     `category_name` text DEFAULT NULL,
@@ -30,14 +35,16 @@ CREATE TABLE `book_categories` (
 --
 
 -- Table for books
-DROP TABLE IF EXISTS `books`;
-
 CREATE TABLE `books` (
     `id` int NOT NULL AUTO_INCREMENT,
+    `user_id` int,
     `title` text DEFAULT NULL,
     `category_id` int,
 
      PRIMARY KEY (`id`),
+     FOREIGN KEY (`user_id`) REFERENCES users(`id`)
+     ON DELETE CASCADE
+     ON UPDATE CASCADE,
      FOREIGN KEY (`category_id`) REFERENCES book_categories(`id`)
      ON DELETE CASCADE
      ON UPDATE CASCADE
@@ -45,8 +52,6 @@ CREATE TABLE `books` (
 --
 
 -- Table for book authors
-DROP TABLE IF EXISTS `book_authors`;
-
 CREATE TABLE `book_authors` (
     `id` int NOT NULL AUTO_INCREMENT,
     `author_name` text DEFAULT NULL,
@@ -56,8 +61,6 @@ CREATE TABLE `book_authors` (
 --
 
 -- Table for author writes book relationship
-DROP TABLE IF EXISTS `writes_book`;
-
 CREATE TABLE `writes_book` (
     `author_id` int NOT NULL,
     `book_id` int NOT NULL,
@@ -73,8 +76,6 @@ CREATE TABLE `writes_book` (
 --
 
 -- Table for favorite authors relationship
-DROP TABLE IF EXISTS `favorite_authors`;
-
 CREATE TABLE `favorite_authors` (
     `user_id` int NOT NULL,
     `author_id` int NOT NULL,
@@ -90,8 +91,6 @@ CREATE TABLE `favorite_authors` (
 --
 
 -- Table for favorite categories relationship
-DROP TABLE IF EXISTS `favorite_categories`;
-
 CREATE TABLE `favorite_categories` (
     `user_id` int NOT NULL,
     `category_id` int NOT NULL,
@@ -107,8 +106,6 @@ CREATE TABLE `favorite_categories` (
 --
 
 -- Table for requests
-DROP TABLE IF EXISTS `requests_book`;
-
 CREATE TABLE `requests_book` (
     `user_id` int NOT NULL,
     `book_id` int NOT NULL,
@@ -121,4 +118,9 @@ CREATE TABLE `requests_book` (
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
+--
+
+
+-- Preload book categories
+
 --

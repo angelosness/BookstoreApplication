@@ -49,7 +49,7 @@ public class User {
         inverseJoinColumns = @JoinColumn(name="category_id"))
     private List<BookCategory> favoriteCategories;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)     // if a book added to the list, create a book entry
+    @OneToMany(mappedBy="offeringUser", cascade = CascadeType.ALL)     // if a book added to the list, create a book entry
     private List<Book> bookOffers;
 
 
