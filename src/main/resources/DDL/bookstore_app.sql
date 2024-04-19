@@ -40,6 +40,7 @@ CREATE TABLE `books` (
     `user_id` int,
     `title` text DEFAULT NULL,
     `category_id` int,
+    `summary` text DEFAULT NULL,
 
      PRIMARY KEY (`id`),
      FOREIGN KEY (`user_id`) REFERENCES users(`id`)
@@ -122,5 +123,8 @@ CREATE TABLE `requests_book` (
 
 
 -- Preload book categories
-
+INSERT INTO book_categories (category_name)
+VALUES
+("Sci-Fi"),
+("Fantasy");
 --

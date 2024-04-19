@@ -34,6 +34,9 @@ public class Book {
     @JoinColumn(name="category_id")     // referenced column is always the primary key of the other table
     private BookCategory bookCategory;
 
+    @Column(name="summary")
+    private String summary;
+
     @ManyToMany
     @JoinTable(
             name="requests_book",
@@ -68,6 +71,10 @@ public class Book {
         return bookCategory;
     }
 
+    public String getSummary() {
+        return summary;
+    }
+
     public List<User> getRequestingUsers() {
         return requestingUsers;
     }
@@ -90,6 +97,10 @@ public class Book {
 
     public void setBookCategory(BookCategory bookCategory) {
         this.bookCategory = bookCategory;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     public void setRequestingUsers(List<User> requestingUsers) {

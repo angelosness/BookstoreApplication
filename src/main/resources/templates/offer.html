@@ -1,25 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Construction</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+    <title>Offer a Book</title>
 </head>
+
 <body>
-<h1>Under Construction</h1>
-<p>This page is currently under construction (offer.html). Please check back later.</p>
+    <br><br>
+    <div class="container">
+        <form th:action="@{/offer/complete}"
+          th:object="${book}" method="POST">
+
+            <input type="hidden" th:field="*{id}">
+
+            <label for="bookTitle">Title</label>
+            <input type="text" th:field="*{title}"
+                   class="form-control mb-4 col-4" id="bookTitle" placeholder="Enter Book Title" required>
+
+            <label>Author(s)</label>
+            <input type="text" th:each="author, itemStat: *{bookAuthors}" th:field="*{bookAuthors[__${itemStat.index}__].authorName}"
+                class="form-control mb-4 col-3" placeholder="Enter Author Name" required>
+
+            <label for="bookCategory">Category</label>
+            <select th:field="*{bookCategory.categoryName}" id="bookCategory" class="form-control mb-4 col-2">
+                <option selected th:each="category: ${categoryList}" th:text="category.categoryName"></option>
+            </select>
+
+            <label for="bookSummary">Summary</label>
+            <textarea type="text" th:field="*{summary}"
+                   class="form-control mb-4 col-6" id="bookSummary" placeholder="Enter Book Summary" rows="3" required></textarea>
+
+            <button type="submit" class="btn btn-info mb-2">Make Offer</button>
+
+        </form>
+    </div>
 </body>
 </html>

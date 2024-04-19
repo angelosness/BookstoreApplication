@@ -1,6 +1,8 @@
 package group.BookstoreApplication.controller;
 
 import group.BookstoreApplication.model.Book;
+import group.BookstoreApplication.model.BookAuthor;
+import group.BookstoreApplication.model.BookCategory;
 import group.BookstoreApplication.model.User;
 import group.BookstoreApplication.service.UserService;
 import org.springframework.ui.Model;
@@ -8,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -52,7 +57,6 @@ public class UserController {
 
     @RequestMapping("/homepage")
     public String openHomepage() {
-
         // recommendations
         return "homepage";
     }
@@ -60,6 +64,18 @@ public class UserController {
     // same logic as login
     @RequestMapping("/offer")
     public String offerBook(Model theModel) {
+        Book theBook = new Book();
+        List<BookAuthor> bookAuthors = new ArrayList<BookAuthor>();
+
+        for (int i=0; i<3; i++) {
+            BookAuthor author = new BookAuthor();
+            bookAuthors.add(author);
+        }
+        theBook.setBookAuthors(bookAuthors);
+
+        theModel.addAttribute("book", theBook);
+
+        // add category list to model
 
         return "offer";
     }
