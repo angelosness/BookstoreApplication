@@ -13,8 +13,8 @@ public class BookAuthor {
     @Column(name="id")
     private int id;
 
-    @Column(name="author_name", unique=true)
-    private String authorName;
+    @Column(name="name", unique=true)
+    private String name;
 
     @ManyToMany(mappedBy="bookAuthors")
     private List<Book> books;
@@ -29,8 +29,8 @@ public class BookAuthor {
         return id;
     }
 
-    public String getAuthorName() {
-        return authorName;
+    public String getName() {
+        return name;
     }
 
     public List<Book> getBooks() {
@@ -41,8 +41,8 @@ public class BookAuthor {
         this.id = id;
     }
 
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setBooks(List<Book> books) {

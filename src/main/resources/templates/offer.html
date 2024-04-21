@@ -24,12 +24,12 @@
                    class="form-control mb-4 col-4" id="bookTitle" placeholder="Enter Book Title" required>
 
             <label>Author(s)</label>
-            <input type="text" th:each="author, itemStat: *{bookAuthors}" th:field="*{bookAuthors[__${itemStat.index}__].authorName}"
-                class="form-control mb-4 col-3" placeholder="Enter Author Name" required>
+            <input type="text" th:each="author, itemStat: *{bookAuthors}" th:field="*{bookAuthors[__${itemStat.index}__].name}"
+                class="form-control mb-4 col-3" placeholder="Enter Author Name" th:required="${itemStat.index==0}">
 
             <label for="bookCategory">Category</label>
-            <select th:field="*{bookCategory.categoryName}" id="bookCategory" class="form-control mb-4 col-2">
-                <option selected th:each="category: ${categoryList}" th:text="category.categoryName"></option>
+            <select th:field="*{bookCategory.name}" id="bookCategory" class="form-control mb-4 col-2">
+                <option th:each="category: ${categoryList}" th:value="${category.name}" th:text="${category.name}"></option>
             </select>
 
             <label for="bookSummary">Summary</label>

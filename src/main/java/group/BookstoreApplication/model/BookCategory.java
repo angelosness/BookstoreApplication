@@ -13,8 +13,8 @@ public class BookCategory {
     @Column(name="id")
     private int id;
 
-    @Column(name="category_name", unique=true)
-    private String categoryName;
+    @Column(name="name", unique=true)
+    private String name;
 
     @OneToMany(mappedBy="bookCategory")       // mappedBy for the other side of the association
     private List<Book> books;
@@ -29,8 +29,8 @@ public class BookCategory {
         return id;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getName() {
+        return name;
     }
 
     public List<Book> getBooks() {
@@ -41,8 +41,8 @@ public class BookCategory {
         this.id = id;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setBooks(List<Book> books) {

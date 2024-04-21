@@ -1,13 +1,18 @@
 package group.BookstoreApplication.model;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
 @Table(name="users")
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)        //for auto increment
     @Column(name="id")
@@ -49,7 +54,7 @@ public class User {
         inverseJoinColumns = @JoinColumn(name="category_id"))
     private List<BookCategory> favoriteCategories;
 
-    @OneToMany(mappedBy="offeringUser", cascade = CascadeType.ALL)     // if a book added to the list, create a book entry
+    @OneToMany(mappedBy="offeringUser", cascade = CascadeType.ALL)     // if a book added to the list, create book entry
     private List<Book> bookOffers;
 
 
@@ -144,5 +149,31 @@ public class User {
 
     public void setBookOffers(List<Book> bookOffers) {
         this.bookOffers = bookOffers;
+    }
+
+    // for UserDetails
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("USER");
+        return Collections.singletonList(authority);
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

@@ -1,12 +1,15 @@
 package group.BookstoreApplication.service;
 
 import group.BookstoreApplication.model.Book;
+import group.BookstoreApplication.model.BookCategory;
 import group.BookstoreApplication.model.User;
 
-public interface UserService {
-    public boolean userLogin(User theUser);
+import java.util.List;
 
+public interface UserService {
     public boolean userRegister(User theUser);
 
-    public void addOffer(User theUser, Book theBook);
+    public void addOffer(String username, Book theBook);
+
+    public List<BookCategory> retrieveCategories();
 }

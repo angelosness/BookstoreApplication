@@ -28,7 +28,7 @@ CREATE TABLE `users` (
 -- Table for book categories
 CREATE TABLE `book_categories` (
     `id` int NOT NULL AUTO_INCREMENT,
-    `category_name` text DEFAULT NULL,
+    `name` text DEFAULT NULL,
 
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
@@ -55,7 +55,7 @@ CREATE TABLE `books` (
 -- Table for book authors
 CREATE TABLE `book_authors` (
     `id` int NOT NULL AUTO_INCREMENT,
-    `author_name` text DEFAULT NULL,
+    `name` text DEFAULT NULL,
 
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
@@ -123,7 +123,7 @@ CREATE TABLE `requests_book` (
 
 
 -- Preload book categories
-INSERT INTO book_categories (category_name)
+INSERT INTO book_categories (name)
 VALUES
 ("Sci-Fi"),
 ("Fantasy");

@@ -5,6 +5,7 @@ import group.BookstoreApplication.model.BookAuthor;
 import group.BookstoreApplication.model.BookCategory;
 import group.BookstoreApplication.model.User;
 import group.BookstoreApplication.service.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,11 +27,7 @@ public class UserController {
     }
 
     @RequestMapping("/login")
-    public String login(Model theModel) {
-        User theUser = new User();
-
-        theModel.addAttribute("user", theUser);
-
+    public String login() {
         return "login";
     }
 
@@ -43,39 +40,28 @@ public class UserController {
         return "register";
     }
 
-    @RequestMapping("/auth")
-    public String authorizeUser(@ModelAttribute("user") User theUser) {
-        if (userService.userLogin(theUser)) return "redirect:/homepage";
-        else return "redirect:/login?error";
-    }
-
     @RequestMapping("/save")
     public String saveUser(@ModelAttribute("user") User theUser) {
         if (userService.userRegister(theUser)) return "redirect:/login";
         else return "redirect:/register?error";
     }
 
-    @RequestMapping("/homepage")
-    public String openHomepage() {
-        // recommendations
-        return "homepage";
-    }
-
     // same logic as login
     @RequestMapping("/offer")
     public String offerBook(Model theModel) {
         Book theBook = new Book();
-        List<BookAuthor> bookAuthors = new ArrayList<BookAuthor>();
 
+        // max 3 authors
         for (int i=0; i<3; i++) {
             BookAuthor author = new BookAuthor();
-            bookAuthors.add(author);
+            author.getBooks().add(theBook);
+            theBook.getBookAuthors().add(author);
         }
-        theBook.setBookAuthors(bookAuthors);
 
         theModel.addAttribute("book", theBook);
 
-        // add category list to model
+        List<BookCategory> categoryList = userService.retrieveCategories();
+        theModel.addAttribute("categoryList", categoryList);
 
         return "offer";
     }
@@ -93,8 +79,8 @@ public class UserController {
     }
 
     @RequestMapping("/offer/complete")
-    public String completeOffer(@ModelAttribute("user") User theUser, @ModelAttribute("book") Book theBook) {
-        userService.addOffer(theUser,theBook);
-        return "redirect:/homepage";
+    public String completeOffer(@ModelAttribute("book") Book theBook) {
+        userService.addOffer(SecurityContextHolder.getContext().getAuthentication().getName(),theBook);
+        return "redirect:/";
     }
 }
