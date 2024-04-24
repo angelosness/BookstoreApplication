@@ -55,7 +55,7 @@ public class WebSecurityConfig {
                 .logout((logout) -> logout
                         .logoutUrl("/logout")
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        .logoutSuccessUrl("/")
+                        .logoutSuccessUrl("/login?logout=true")
                 )
                 .authenticationProvider(authenticationProvider());
 

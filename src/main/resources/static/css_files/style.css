@@ -25,9 +25,14 @@ body {
 
 .searchbar [type=text]{
   width: 40%;
-  font-size: 18pt;
-  border-radius: 20px;
-  text-align: center
+  height: 35pt;
+  font-size: 15pt;
+  border-radius: 10px;
+  text-align: center;
+  border: solid;
+  border-width: 0.1px;
+  outline: none;
+  box-shadow: 1px 1px 9px 0px black;
 }
 
 .button_container {
