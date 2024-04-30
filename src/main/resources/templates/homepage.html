@@ -20,7 +20,7 @@
     <!-- Link to Poppins font from Google APIs -->
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
-    <link rel="icon" th:href="@{images/site_icon.png}" href="http://example.com/favicon.ico" />
+    <link rel="icon" th:href="@{images/site_icon.png}"/>
 
     <title>Bookstore Application - Homescreen</title>
 
@@ -65,88 +65,50 @@
     </div>
 </div>
 
-<div class="accordion w-25 mx-auto" id="accordionPanelsStayOpenExample">
-    <div class="accordion-item">
-        <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                Search Strategy
-            </button>
-        </h2>
-        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-            <div class="accordion-body">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Approximate</option>
-                    <option value="1">Exact</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                Search Filters
-            </button>
-        </h2>
-        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-            <div class="accordion-body">
-                <strong>Book Genres</strong>
-                <br>
-                <div class="flex-container">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="category_1">
-                        <label class="form-check-label" for="category_1">
-                            Genre 1
-                        </label>
+<form th:action="@{/search}"
+      th:object="${searchData}" method="POST">
+
+<div>
+    <div class="accordion mx-auto" style="width: 40%" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                    Search
+                </button>
+            </h2>
+
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+
+                    <span>Book Title:</span>
+                    <div class="searchbar">
+                        <input type="text" th:field="*{title}" placeholder="e.g. The Guernsey Literary and Potato Peel Pie Society">
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="category_2">
-                        <label class="form-check-label" for="category_2">
-                            Genre 2
-                        </label>
+                    <span>Book Authors:</span>
+                    <div class="searchbar">
+                        <input type="text" th:field="*{authors}" placeholder="e.g. Mary Ann Shaffer,Annie Barrows">
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="category_3">
-                        <label class="form-check-label" for="category_3">
-                            Genre 3
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="category_4">
-                        <label class="form-check-label" for="category_4">
-                            Genre 4
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="category_5">
-                        <label class="form-check-label" for="category_5">
-                            Genre 5
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="category_6">
-                        <label class="form-check-label" for="category_6">
-                            Genre 6
-                        </label>
+                    <span>Select Strategy:</span>
+                    <div style="padding-bottom: 15px; padding-top: 15px; width: 65%; margin: auto">
+                        <select th:field="*{searchStrategy}" class="form-select" style="text-align: center;" aria-label="Default select example">
+                            <option value="Approximate" selected>Approximate</option>
+                            <option value="Exact">Exact</option>
+                        </select>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<br>
+    <br>
 
-<div class="searchbar">
-    <input type="text" placeholder="Search a Book!">
-</div>
-
-<br>
-
-<div class="button_container">
-    <div class="button_row">
-        <button type="button" class="btn btn-primary">Search</button>
+    <div class="button_container">
+        <div class="button_row">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
     </div>
-</div>
+
+</form>
 
 <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
     <div class="modal-dialog">

@@ -1,5 +1,6 @@
 package group.BookstoreApplication.service;
 
+import group.BookstoreApplication.formsdata.SearchDTO;
 import group.BookstoreApplication.model.Book;
 import group.BookstoreApplication.model.BookCategory;
 import group.BookstoreApplication.model.User;
@@ -12,4 +13,6 @@ public interface UserService {
     public void addOffer(String username, Book theBook);
 
     public List<BookCategory> retrieveCategories();
+
+    public List<Book> searchBooks(SearchDTO searchData);
 }

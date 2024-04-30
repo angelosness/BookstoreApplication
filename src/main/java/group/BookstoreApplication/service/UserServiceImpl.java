@@ -1,12 +1,18 @@
 package group.BookstoreApplication.service;
 
+import group.BookstoreApplication.formsdata.SearchDTO;
 import group.BookstoreApplication.dao.BookAuthorDAO;
 import group.BookstoreApplication.dao.BookCategoryDAO;
+import group.BookstoreApplication.dao.BookDAO;
 import group.BookstoreApplication.dao.UserDAO;
 import group.BookstoreApplication.model.Book;
 import group.BookstoreApplication.model.BookAuthor;
 import group.BookstoreApplication.model.BookCategory;
 import group.BookstoreApplication.model.User;
+import group.BookstoreApplication.service.search.SearchFactory;
+import group.BookstoreApplication.service.search.SearchStrategy;
+import group.BookstoreApplication.service.search.TemplateSearchStrategy;
+import org.hibernate.sql.Template;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -31,6 +38,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     private BookAuthorDAO authorRepository;
 
+    @Autowired
+    private BookDAO bookRepository;
 
     @Override
     public boolean userRegister(User theUser) {
@@ -84,6 +93,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         // update user
         userRepository.save(theUser);
+    }
+
+    @Override
+    public List<Book> searchBooks(SearchDTO searchData)
+    {
+        SearchStrategy searchType = SearchFactory.create(searchData.getSearchStrategy());
+
+        //Return results
+        return searchType.search(searchData, bookRepository);
+
     }
 
     // for loading all preloaded book categories into the offer form

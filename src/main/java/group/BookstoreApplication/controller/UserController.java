@@ -1,5 +1,6 @@
 package group.BookstoreApplication.controller;
 
+import group.BookstoreApplication.formsdata.SearchDTO;
 import group.BookstoreApplication.model.Book;
 import group.BookstoreApplication.model.BookAuthor;
 import group.BookstoreApplication.model.BookCategory;
@@ -26,10 +27,17 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping("/login")
-    public String login() {
-        return "login";
+    @RequestMapping("/")
+    public String homepage(Model theModel){
+        SearchDTO searchData = new SearchDTO();
+
+        theModel.addAttribute("searchData",searchData);
+
+        return "homepage";
     }
+
+    @RequestMapping("/login")
+    public String login() { return "login"; }
 
     @RequestMapping("/register")
     public String register(Model theModel) {
@@ -83,4 +91,15 @@ public class UserController {
         userService.addOffer(SecurityContextHolder.getContext().getAuthentication().getName(),theBook);
         return "redirect:/";
     }
+
+    @RequestMapping("/search")
+    public String search(@ModelAttribute("formdata") SearchDTO searchData, Model theModel) {
+        List<Book> searchResult = userService.searchBooks(searchData);
+
+        theModel.addAttribute("books", searchResult);
+
+        return "searchResult";
+    }
+
+
 }
