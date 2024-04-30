@@ -1,6 +1,11 @@
 package group.BookstoreApplication.controller;
 
+<<<<<<< Updated upstream
 import group.BookstoreApplication.formsdata.SearchDTO;
+=======
+import group.BookstoreApplication.BookstoreApplication;
+import group.BookstoreApplication.formsdata.ProfileDTO;
+>>>>>>> Stashed changes
 import group.BookstoreApplication.model.Book;
 import group.BookstoreApplication.model.BookAuthor;
 import group.BookstoreApplication.model.BookCategory;
@@ -12,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,9 +87,16 @@ public class UserController {
     }
 
     @RequestMapping("/profile")
-    public String profile(Model theModel) {
+    public String showProfile(Model theModel) {
+        User theUser = userService.retrieveProfile(SecurityContextHolder.getContext().getAuthentication().getName());
 
-        return "profile";
+        ProfileDTO profileData = new ProfileDTO(theUser);
+        theModel.addAttribute("formdata", profileData);
+
+        List<BookCategory> categoryList = userService.retrieveCategories();
+        theModel.addAttribute("categoryList", categoryList);
+
+        return "user/profile";
     }
 
     @RequestMapping("/offer/complete")
@@ -92,6 +105,7 @@ public class UserController {
         return "redirect:/";
     }
 
+<<<<<<< Updated upstream
     @RequestMapping("/search")
     public String search(@ModelAttribute("formdata") SearchDTO searchData, Model theModel) {
         List<Book> searchResult = userService.searchBooks(searchData);
@@ -102,4 +116,28 @@ public class UserController {
     }
 
 
+=======
+    @RequestMapping("/list")
+    public String showOfferList(Model theModel) {
+        List<Book> personalList = userService.retrievePersonalList(SecurityContextHolder.getContext().getAuthentication().getName());
+
+        theModel.addAttribute("offerList", personalList);
+
+        return "user/list";
+    }
+
+    @RequestMapping("/list/delete")
+    public String deleteOffer(@RequestParam("bookId") int theId) {
+        userService.removeBook(theId);
+
+        return "redirect:/list";
+    }
+
+    @RequestMapping("/profile/save")
+    public String updateProfile(@ModelAttribute("formdata") ProfileDTO profileData) {
+        userService.updateUser(profileData);
+
+        return "redirect:/";
+    }
+>>>>>>> Stashed changes
 }

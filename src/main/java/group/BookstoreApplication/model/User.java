@@ -54,7 +54,8 @@ public class User implements UserDetails {
         inverseJoinColumns = @JoinColumn(name="category_id"))
     private List<BookCategory> favoriteCategories;
 
-    @OneToMany(mappedBy="offeringUser", cascade = CascadeType.ALL)     // if a book added to the list, create book entry
+    // orphanRemoval for removing books that have been deleted from db
+    @OneToMany(mappedBy="offeringUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> bookOffers;
 
 

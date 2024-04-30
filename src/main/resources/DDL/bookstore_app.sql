@@ -125,6 +125,15 @@ CREATE TABLE `requests_book` (
 -- Preload book categories
 INSERT INTO book_categories (name)
 VALUES
-("Sci-Fi"),
-("Fantasy");
+("Art"),
+("Comic"),
+("Fantasy"),
+("Fiction"),
+("Biography"),
+("History"),
+("Science"),
+("Literature"),
+("Adventure"),
+("Crime"),
+("Other");
 --

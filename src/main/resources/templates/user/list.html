@@ -20,13 +20,13 @@
     <!-- Link to Poppins font from Google APIs -->
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
-    <link rel="icon" th:href="@{images/site_icon.png}"/>
+    <link rel="icon" th:href="@{images/site_icon.png}" href="http://example.com/favicon.ico" />
 
-    <title>Homescreen</title>
+    <title>Personal List</title>
 
 </head>
-<body>
 
+<body>
 
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
@@ -57,59 +57,31 @@
     </div>
 </nav>
 
-<br>
+<br><br>
 
-<div class="logo">
-    <img th:src="@{images/home_ico.jpg}" width="15%" height="15%">
-    <div class="appName">
-        <H1>Bookstore Application</H1>
-    </div>
+<div class="container">
+    <h3>Your Offers</h3>
+    <hr>
+    <ul class="list-group">
+        <li class="list-group-item" th:each="book : ${offerList}">
+            <h5><strong th:text="${book.title}"></strong></h5>
+            <u>Authors</u>:
+            <ul>
+                <li th:each="author : ${book.bookAuthors}" th:text="${author.name}"></li>
+            </ul>
+            <u>Category</u>:
+            <p th:text="${book.bookCategory.name}"></p>
+            <u>Summary</u>:
+            <p th:text="${book.summary}"></p>
+
+            <a th:href="@{/list/delete(bookId=${book.id})}"
+               class="btn btn-danger btn-sm"
+               onclick="if (!(confirm('Are you sure you want to delete this offer?'))) return false">
+                Delete
+            </a>
+        </li>
+    </ul>
 </div>
-
-<form th:action="@{/search}"
-      th:object="${searchData}" method="POST">
-
-<div>
-    <div class="accordion mx-auto" style="width: 40%" id="accordionPanelsStayOpenExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                    Search
-                </button>
-            </h2>
-
-            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                <div class="accordion-body">
-
-                    <span>Book Title:</span>
-                    <div class="searchbar">
-                        <input type="text" th:field="*{title}" placeholder="e.g. The Guernsey Literary and Potato Peel Pie Society">
-                    </div>
-                    <span>Book Authors:</span>
-                    <div class="searchbar">
-                        <input type="text" th:field="*{authors}" placeholder="e.g. Mary Ann Shaffer,Annie Barrows">
-                    </div>
-                    <span>Select Strategy:</span>
-                    <div style="padding-bottom: 15px; padding-top: 15px; width: 65%; margin: auto">
-                        <select th:field="*{searchStrategy}" class="form-select" style="text-align: center;" aria-label="Default select example">
-                            <option value="Approximate" selected>Approximate</option>
-                            <option value="Exact">Exact</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <br>
-
-    <div class="button_container">
-        <div class="button_row">
-            <button type="submit" class="btn btn-primary">Search</button>
-        </div>
-    </div>
-
-</form>
 
 <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
     <div class="modal-dialog">

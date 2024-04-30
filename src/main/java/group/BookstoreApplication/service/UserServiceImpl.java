@@ -5,6 +5,7 @@ import group.BookstoreApplication.dao.BookAuthorDAO;
 import group.BookstoreApplication.dao.BookCategoryDAO;
 import group.BookstoreApplication.dao.BookDAO;
 import group.BookstoreApplication.dao.UserDAO;
+import group.BookstoreApplication.formsdata.ProfileDTO;
 import group.BookstoreApplication.model.Book;
 import group.BookstoreApplication.model.BookAuthor;
 import group.BookstoreApplication.model.BookCategory;
@@ -31,6 +32,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
     private UserDAO userRepository;
+
+    @Autowired
+    private BookDAO bookRepository;
 
     @Autowired
     private BookCategoryDAO categoryRepository;
@@ -88,8 +92,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         User theUser = userRepository.findByUsername(username);
 
         theBook.setOfferingUser(theUser);
-        List<Book> bookOffers = theUser.getBookOffers();
-        bookOffers.add(theBook);
+        theUser.getBookOffers().add(theBook);
 
         // update user
         userRepository.save(theUser);
@@ -109,6 +112,35 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public List<BookCategory> retrieveCategories() {
         return categoryRepository.findAll();
+    }
+
+    @Override
+    public List<Book> retrievePersonalList(String username) {
+        return userRepository.findByUsername(username).getBookOffers();
+    }
+
+    // for removing a book from personal offer list
+    @Override
+    public void removeBook(int id) {
+        bookRepository.deleteById(id);
+    }
+
+    // for showing account information
+    @Override
+    public User retrieveProfile(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    // for user profile update
+    @Override
+    public void updateUser(ProfileDTO profileData) {
+        // update user's favorite categories
+        List<String> categoryList = profileData.getCategories();
+        for (String s : categoryList) {
+            profileData.getUser().getFavoriteCategories().add(categoryRepository.findByName(s));
+        }
+
+        userRepository.save(profileData.getUser());
     }
 
     // for UserDetailsService
