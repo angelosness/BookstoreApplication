@@ -12,8 +12,6 @@ import group.BookstoreApplication.model.BookCategory;
 import group.BookstoreApplication.model.User;
 import group.BookstoreApplication.service.search.SearchFactory;
 import group.BookstoreApplication.service.search.SearchStrategy;
-import group.BookstoreApplication.service.search.TemplateSearchStrategy;
-import org.hibernate.sql.Template;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,7 +20,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -41,9 +38,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
     private BookAuthorDAO authorRepository;
-
-    @Autowired
-    private BookDAO bookRepository;
 
     @Override
     public boolean userRegister(User theUser) {

@@ -1,6 +1,5 @@
 package group.BookstoreApplication.formsdata;
 
-import group.BookstoreApplication.model.Book;
 import group.BookstoreApplication.model.BookCategory;
 import group.BookstoreApplication.model.User;
 

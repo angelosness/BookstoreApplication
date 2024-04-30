@@ -1,8 +1,5 @@
 package group.BookstoreApplication.formsdata;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SearchDTO {
     private String title;
     private String authors;

@@ -1,11 +1,7 @@
 package group.BookstoreApplication.controller;
 
-<<<<<<< Updated upstream
 import group.BookstoreApplication.formsdata.SearchDTO;
-=======
-import group.BookstoreApplication.BookstoreApplication;
 import group.BookstoreApplication.formsdata.ProfileDTO;
->>>>>>> Stashed changes
 import group.BookstoreApplication.model.Book;
 import group.BookstoreApplication.model.BookAuthor;
 import group.BookstoreApplication.model.BookCategory;
@@ -19,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -105,7 +100,6 @@ public class UserController {
         return "redirect:/";
     }
 
-<<<<<<< Updated upstream
     @RequestMapping("/search")
     public String search(@ModelAttribute("formdata") SearchDTO searchData, Model theModel) {
         List<Book> searchResult = userService.searchBooks(searchData);
@@ -115,8 +109,6 @@ public class UserController {
         return "searchResult";
     }
 
-
-=======
     @RequestMapping("/list")
     public String showOfferList(Model theModel) {
         List<Book> personalList = userService.retrievePersonalList(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -139,5 +131,4 @@ public class UserController {
 
         return "redirect:/";
     }
->>>>>>> Stashed changes
 }
