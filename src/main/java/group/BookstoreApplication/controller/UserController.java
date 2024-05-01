@@ -76,9 +76,10 @@ public class UserController {
     }
 
     @RequestMapping("/request")
-    public String requestBook(Model theModel) {
+    public String sendRequest(@RequestParam("bookId") int theId) {
+        userService.requestBook(SecurityContextHolder.getContext().getAuthentication().getName(), theId);
 
-        return "request";
+        return "redirect:/";
     }
 
     @RequestMapping("/profile")
@@ -104,9 +105,13 @@ public class UserController {
     public String search(@ModelAttribute("formdata") SearchDTO searchData, Model theModel) {
         List<Book> searchResult = userService.searchBooks(searchData);
 
+        // retrieve current user information to check if he is able to request
+        User thisUser = userService.retrieveProfile(SecurityContextHolder.getContext().getAuthentication().getName());
+        theModel.addAttribute("user", thisUser);
+
         theModel.addAttribute("books", searchResult);
 
-        return "searchResult";
+        return "search";
     }
 
     @RequestMapping("/list")
@@ -130,5 +135,24 @@ public class UserController {
         userService.updateUser(profileData);
 
         return "redirect:/";
+    }
+
+    @RequestMapping("/list/give")
+    public String giveBook(@RequestParam("userId") int userId, @RequestParam("bookId") int bookId) {
+        userService.offerBookToUser(userId, bookId);
+
+        return "redirect:/list";
+    }
+
+    @RequestMapping("/reqlist")
+    public String showRequestList(Model theModel) {
+        List<Book> requestList = userService.retrieveRequestList(SecurityContextHolder.getContext().getAuthentication().getName());
+
+        theModel.addAttribute("requestList", requestList);
+
+        User thisUser = userService.retrieveProfile(SecurityContextHolder.getContext().getAuthentication().getName());
+        theModel.addAttribute("user", thisUser);
+
+        return "user/requests";
     }
 }

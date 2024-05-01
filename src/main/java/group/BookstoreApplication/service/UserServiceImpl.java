@@ -137,6 +137,31 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userRepository.save(profileData.getUser());
     }
 
+    @Override
+    public void requestBook(String username, int id) {
+        User user = userRepository.findByUsername(username);
+        Book book = bookRepository.findById(id);
+
+        book.getRequestingUsers().add(user);
+
+        bookRepository.save(book);
+    }
+
+    @Override
+    public void offerBookToUser(int userId, int bookId) {
+        Book book = bookRepository.findById(bookId);
+        book.setAcceptedUser(userRepository.findById(userId));
+
+        book.setStatus("UNAVAILABLE");
+
+        bookRepository.save(book);
+    }
+
+    @Override
+    public List<Book> retrieveRequestList(String username) {
+        return userRepository.findByUsername(username).getRequestedBooks();
+    }
+
     // for UserDetailsService
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

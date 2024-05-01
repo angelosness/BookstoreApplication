@@ -8,6 +8,8 @@ import java.util.List;
 
 @Repository
 public interface BookDAO extends JpaRepository<Book, Integer> {
+    public Book findById(int id);
+
     public List<Book> findByTitle(String title);
 
     public List<Book> findByTitleContaining(String title);

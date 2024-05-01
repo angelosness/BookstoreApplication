@@ -40,12 +40,8 @@ public class User implements UserDetails {
     @Column(name="address")
     private String address;
 
-    @ManyToMany
-    @JoinTable(
-        name="favorite_authors",
-        joinColumns = @JoinColumn(name="user_id"),
-        inverseJoinColumns = @JoinColumn(name="author_id"))
-    private List<BookAuthor> favoriteAuthors;
+    @Column(name="favorite_authors")
+    private String favoriteAuthors;
 
     @ManyToMany
     @JoinTable(
@@ -58,12 +54,15 @@ public class User implements UserDetails {
     @OneToMany(mappedBy="offeringUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> bookOffers;
 
+    @ManyToMany(mappedBy="requestingUsers")
+    private List<Book> requestedBooks;
+
 
     public User() {
         super();
-        favoriteAuthors = new ArrayList<BookAuthor>();
         favoriteCategories = new ArrayList<BookCategory>();
         bookOffers = new ArrayList<Book>();
+        requestedBooks = new ArrayList<Book>();
     }
 
     public int getId() {
@@ -96,7 +95,7 @@ public class User implements UserDetails {
         return address;
     }
 
-    public List<BookAuthor> getFavoriteAuthors() {
+    public String getFavoriteAuthors() {
         return favoriteAuthors;
     }
 
@@ -106,6 +105,10 @@ public class User implements UserDetails {
 
     public List<Book> getBookOffers() {
         return bookOffers;
+    }
+
+    public List<Book> getRequestedBooks() {
+        return requestedBooks;
     }
 
     public void setId(int id) {
@@ -140,7 +143,7 @@ public class User implements UserDetails {
         this.address = address;
     }
 
-    public void setFavoriteAuthors(List<BookAuthor> favoriteAuthors) {
+    public void setFavoriteAuthors(String favoriteAuthors) {
         this.favoriteAuthors = favoriteAuthors;
     }
 
@@ -150,6 +153,10 @@ public class User implements UserDetails {
 
     public void setBookOffers(List<Book> bookOffers) {
         this.bookOffers = bookOffers;
+    }
+
+    public void setRequestedBooks(List<Book> requestedBooks) {
+        this.requestedBooks = requestedBooks;
     }
 
     // for UserDetails

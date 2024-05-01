@@ -1,7 +1,6 @@
 CREATE DATABASE IF NOT EXISTS `bookstore_app_db`;
 USE `bookstore_app_db`;
 
-DROP TABLE IF EXISTS `favorite_authors`;
 DROP TABLE IF EXISTS `favorite_categories`;
 DROP TABLE IF EXISTS `requests_book`;
 DROP TABLE IF EXISTS `writes_book`;
@@ -20,6 +19,7 @@ CREATE TABLE `users` (
     `age` int,
     `phone_number` text DEFAULT NULL,
     `address` text DEFAULT NULL,
+    `favorite_authors` text DEFAULT NULL,
 
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
@@ -41,12 +41,17 @@ CREATE TABLE `books` (
     `title` text DEFAULT NULL,
     `category_id` int,
     `summary` text DEFAULT NULL,
+    `status` text DEFAULT NULL,
+    `accepted_user_id` int,
 
      PRIMARY KEY (`id`),
      FOREIGN KEY (`user_id`) REFERENCES users(`id`)
      ON DELETE CASCADE
      ON UPDATE CASCADE,
      FOREIGN KEY (`category_id`) REFERENCES book_categories(`id`)
+     ON DELETE CASCADE
+     ON UPDATE CASCADE,
+     FOREIGN KEY (`accepted_user_id`) REFERENCES users(`id`)
      ON DELETE CASCADE
      ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
@@ -71,21 +76,6 @@ CREATE TABLE `writes_book` (
     ON DELETE CASCADE
     ON UPDATE CASCADE,
     FOREIGN KEY (`book_id`) REFERENCES books(`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
-);
---
-
--- Table for favorite authors relationship
-CREATE TABLE `favorite_authors` (
-    `user_id` int NOT NULL,
-    `author_id` int NOT NULL,
-
-    PRIMARY KEY (`user_id`, `author_id`),
-    FOREIGN KEY (`user_id`) REFERENCES users(`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-    FOREIGN KEY (`author_id`) REFERENCES book_authors(`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
