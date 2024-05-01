@@ -38,6 +38,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" th:href="@{/offer}">Make a Book Offer</a></li>
                         <li><a class="dropdown-item" th:href="@{/list}">Your Offers</a></li>
+                        <li><a class="dropdown-item" th:href="@{/reqlist}">Your Requests</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" th:href="@{/profile}">Profile</a></li>
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal" style="color: red">Logout</a></li>
@@ -91,9 +92,8 @@
                class="form-control mb-4 col-4" style="width: 35%" placeholder="Enter your Address">
 
         <label style="margin-bottom: 10px">Favorite Authors</label>
-        <input type="hidden" th:field="*{user.favoriteAuthors}">
-
-        <br>
+        <input type="text" th:field="*{user.favoriteAuthors}"
+               class="form-control mb-4 col-4" style="width: 35%" placeholder="e.g. Mary Ann Shaffer,Annie Barrows">
 
         <label style="margin-bottom: 10px">Favorite Categories</label>
         <select th:field="*{categories}" class="form-control col-2" style="width:20%" multiple>

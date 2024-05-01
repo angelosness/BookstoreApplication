@@ -59,16 +59,6 @@ body {
   font-family: 'Poppins';
 }
 
-.author {
-  position: relative;
-  cursor: pointer; /* Change cursor to pointer when hovering over author */
-}
-
-.author:hover::after {
-  content: "\2605";
-  position: absolute;
-  top: 50%;
-  right: -15px;
-  color: gold;
-  font-size: 20px;
+.popover{
+    max-width: 100%
 }

@@ -37,6 +37,9 @@ public class Book {
     @Column(name="summary")
     private String summary;
 
+    @Column(name="status")
+    private String status;
+
     @ManyToMany
     @JoinTable(
             name="requests_book",
@@ -44,9 +47,14 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name="user_id"))
     private List<User> requestingUsers;
 
+    @ManyToOne
+    @JoinColumn(name="accepted_user_id")
+    private User acceptedUser;
+
 
     public Book() {
         super();
+        status = "AVAILABLE";
         bookAuthors = new ArrayList<BookAuthor>();
         requestingUsers = new ArrayList<User>();
     }
@@ -75,8 +83,16 @@ public class Book {
         return summary;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     public List<User> getRequestingUsers() {
         return requestingUsers;
+    }
+
+    public User getAcceptedUser() {
+        return acceptedUser;
     }
 
     public void setId(int id) {
@@ -103,7 +119,15 @@ public class Book {
         this.summary = summary;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public void setRequestingUsers(List<User> requestingUsers) {
         this.requestingUsers = requestingUsers;
+    }
+
+    public void setAcceptedUser(User acceptedUser) {
+        this.acceptedUser = acceptedUser;
     }
 }

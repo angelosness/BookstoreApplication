@@ -24,4 +24,10 @@ public interface UserService {
     public User retrieveProfile(String username);
 
     public void updateUser(ProfileDTO profileData);
+
+    public void requestBook(String username, int id);
+
+    public void offerBookToUser(int userId, int bookId);
+
+    public List<Book> retrieveRequestList(String username);
 }

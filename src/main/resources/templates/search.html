@@ -36,6 +36,8 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" th:href="@{/offer}">Make a Book Offer</a></li>
+                            <li><a class="dropdown-item" th:href="@{/list}">Your Offers</a></li>
+                            <li><a class="dropdown-item" th:href="@{/reqlist}">Your Requests</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" th:href="@{/profile}">Profile</a></li>
                             <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal" style="color: red">Logout</a></li>
@@ -67,7 +69,7 @@
         <thead>
         <tr>
             <th scope="col" style="width: 15%;">Title</th>
-            <th class = "author" scope="col" style="width: 15%;">Authors</th>
+            <th scope="col" style="width: 15%;">Authors</th>
             <th scope="col" style="width: 15%;">Category</th>
             <th scope="col" style="width: 35%;">Summary</th>
             <th scope="col" style="width: 10%;">Offering User</th>
@@ -85,11 +87,13 @@
             <td th:text="${book.offeringUser.username}" />
 
             <td>
-                <!-- Request Book Button -->
-                <a th:href="@{/}"
-                   class="btn btn-primary btn-sm">
+                <!-- Request Book Button: if user has not requested book and is not the offering user and if book is available-->
+                <a th:if="${!#lists.contains(book.requestingUsers, user) && book.offeringUser.id != user.id && #strings.equals(book.status, 'AVAILABLE')}"
+                   th:href="@{/request(bookId=${book.id})}" class="btn btn-primary btn-sm">
                     Request Book
                 </a>
+
+                <span th:if="${#strings.equals(book.status, 'UNAVAILABLE')}" class="text-danger">UNAVAILABLE</span>
             </td>
         </tr>
 
