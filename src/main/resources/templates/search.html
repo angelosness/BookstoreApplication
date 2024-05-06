@@ -26,35 +26,35 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-    <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Welcome <span th:remove="tag" sec:authentication="name"></span>!
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" th:href="@{/offer}">Make a Book Offer</a></li>
-                        <li><a class="dropdown-item" th:href="@{/list}">Your Offers</a></li>
-                        <li><a class="dropdown-item" th:href="@{/reqlist}">Your Requests</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" th:href="@{/profile}">Profile</a></li>
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal" style="color: red">Logout</a></li>
-                    </ul>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Welcome <span th:remove="tag" sec:authentication="name"></span>!
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/offer}">Make a Book Offer</a></li>
+                            <li><a class="dropdown-item" th:href="@{/list}">Your Offers</a></li>
+                            <li><a class="dropdown-item" th:href="@{/reqlist}">Your Requests</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" th:href="@{/profile}">Profile</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal" style="color: red">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/}" style="padding-right: 20px">Home</a>
                 </li>
             </ul>
         </div>
-    </div>
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" th:href="@{'/'}" style="padding-right: 20px">Home</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+    </nav>
 
     <br>
 
@@ -76,7 +76,7 @@
             <thead>
             <tr>
                 <th scope="col" style="width: 15%;">Title</th>
-                <th class = "author" scope="col" style="width: 15%;">Authors</th>
+                <th scope="col" style="width: 15%;">Authors</th>
                 <th scope="col" style="width: 15%;">Category</th>
                 <th scope="col" style="width: 35%;">Summary</th>
                 <th scope="col" style="width: 10%;">Offering User</th>
@@ -94,16 +94,19 @@
                 <td th:text="${book.offeringUser.username}" />
 
                 <td>
-                    <!-- Request Book Button -->
-                    <a th:href="@{/}"
-                       class="btn btn-primary btn-sm">
+                    <!-- Request Book Button: if user has not requested book and is not the offering user and if book is available-->
+                    <a th:if="${!#lists.contains(book.requestingUsers, user) && book.offeringUser.id != user.id && #strings.equals(book.status, 'AVAILABLE')}"
+                       th:href="@{/request(bookId=${book.id})}" class="btn btn-primary btn-sm">
                         Request Book
                     </a>
+
+                    <span th:if="${#strings.equals(book.status, 'UNAVAILABLE')}" class="text-danger">UNAVAILABLE</span>
                 </td>
             </tr>
 
             </tbody>
         </table>
+    </div>
 
     <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
         <div class="modal-dialog">
