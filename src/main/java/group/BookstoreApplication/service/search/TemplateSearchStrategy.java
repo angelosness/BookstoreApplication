@@ -16,7 +16,8 @@ public abstract class TemplateSearchStrategy implements SearchStrategy{
     @Autowired
     protected BookDAO bookRepository;
 
-    //Defined Classes:
+    //Defined Methods:
+    @Override
     public List<Book> search(SearchDTO searchData, BookDAO bookRepository){
         this.bookRepository=bookRepository;
 
@@ -32,7 +33,7 @@ public abstract class TemplateSearchStrategy implements SearchStrategy{
     }
 
 
-    //Abstract Classes:
+    //Abstract Methods:
     public abstract List<Book> makeInitialListOfBooks(SearchDTO searchData);
 
     public abstract boolean checkIfAuthorsMatch(SearchDTO searchData, Book book);

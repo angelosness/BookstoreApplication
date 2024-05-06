@@ -29,16 +29,29 @@ public class UserController {
     }
 
     @RequestMapping("/")
-    public String homepage(Model theModel){
+    public String homepage(@RequestParam(value = "strategy", defaultValue = "AuthorAndCategories") String strategy, Model theModel) {
         SearchDTO searchData = new SearchDTO();
+        theModel.addAttribute("searchData", searchData);
 
-        theModel.addAttribute("searchData",searchData);
+        User theUser = userService.retrieveProfile(SecurityContextHolder.getContext().getAuthentication().getName());
+        theModel.addAttribute("user", theUser);
+
+
+        //Showing Recommendations on Homepage:
+        //Recommendations based on user's favorite categories:
+        List<Book> recommendationResult = userService.showRecommendations(strategy, theUser);
+
+        //Strategy gets passed to theModel, in order to display the correct tile for the results
+        theModel.addAttribute("strategy", strategy);
+        theModel.addAttribute("books", recommendationResult);
 
         return "homepage";
     }
 
     @RequestMapping("/login")
-    public String login() { return "login"; }
+    public String login() {
+        return "login";
+    }
 
     @RequestMapping("/register")
     public String register(Model theModel) {
@@ -61,7 +74,7 @@ public class UserController {
         Book theBook = new Book();
 
         // max 3 authors
-        for (int i=0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             BookAuthor author = new BookAuthor();
             author.getBooks().add(theBook);
             theBook.getBookAuthors().add(author);
@@ -97,7 +110,7 @@ public class UserController {
 
     @RequestMapping("/offer/complete")
     public String completeOffer(@ModelAttribute("book") Book theBook) {
-        userService.addOffer(SecurityContextHolder.getContext().getAuthentication().getName(),theBook);
+        userService.addOffer(SecurityContextHolder.getContext().getAuthentication().getName(), theBook);
         return "redirect:/";
     }
 
@@ -116,7 +129,7 @@ public class UserController {
 
     @RequestMapping("/list")
     public String showOfferList(Model theModel) {
-        List<Book> personalList = userService.retrievePersonalList(SecurityContextHolder.getContext().getAuthentication().getName());
+        List<Book> personalList = userService.retrieveOfferList(SecurityContextHolder.getContext().getAuthentication().getName());
 
         theModel.addAttribute("offerList", personalList);
 

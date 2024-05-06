@@ -51,6 +51,10 @@ public class WebSecurityConfig {
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .failureUrl("/login?error=true")
+                        //Secure Redirect to homepage (also no ?continue):
+                        //alwaysUse boolean flag: forces redirect even though user specified resource
+                        //Default value for strategy (defined in homepage method (in UserController)) : AuthorAndCategories
+                        .defaultSuccessUrl("/", true)
                 )
                 .logout((logout) -> logout
                         .logoutUrl("/logout")

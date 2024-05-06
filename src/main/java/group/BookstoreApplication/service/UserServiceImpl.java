@@ -10,6 +10,8 @@ import group.BookstoreApplication.model.Book;
 import group.BookstoreApplication.model.BookAuthor;
 import group.BookstoreApplication.model.BookCategory;
 import group.BookstoreApplication.model.User;
+import group.BookstoreApplication.service.recommendations.RecommendationsFactory;
+import group.BookstoreApplication.service.recommendations.RecommendationsStrategy;
 import group.BookstoreApplication.service.search.SearchFactory;
 import group.BookstoreApplication.service.search.SearchStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,13 +95,20 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public List<Book> searchBooks(SearchDTO searchData)
-    {
+    public List<Book> searchBooks(SearchDTO searchData) {
         SearchStrategy searchType = SearchFactory.create(searchData.getSearchStrategy());
 
         //Return results
         return searchType.search(searchData, bookRepository);
 
+    }
+
+    @Override
+    public List<Book> showRecommendations(String strategy, User user){
+        RecommendationsStrategy recommendationType = RecommendationsFactory.create(strategy);
+
+        //Return results
+        return recommendationType.getRecommendations(user, bookRepository);
     }
 
     // for loading all preloaded book categories into the offer form
@@ -109,7 +118,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public List<Book> retrievePersonalList(String username) {
+    public List<Book> retrieveOfferList(String username) {
         return userRepository.findByUsername(username).getBookOffers();
     }
 

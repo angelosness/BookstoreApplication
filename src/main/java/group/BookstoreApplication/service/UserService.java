@@ -17,7 +17,7 @@ public interface UserService {
 
     public List<Book> searchBooks(SearchDTO searchData);
 
-    public List<Book> retrievePersonalList(String username);
+    public List<Book> retrieveOfferList(String username);
 
     public void removeBook(int id);
 
@@ -30,4 +30,6 @@ public interface UserService {
     public void offerBookToUser(int userId, int bookId);
 
     public List<Book> retrieveRequestList(String username);
+
+    public List<Book> showRecommendations(String strategy, User user);
 }
