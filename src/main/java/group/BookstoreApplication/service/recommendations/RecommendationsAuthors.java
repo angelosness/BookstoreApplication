@@ -11,7 +11,11 @@ public class RecommendationsAuthors extends TemplateRecommendationsStrategy {
 
     public List<Book> filterBook(User user) {
 
-        List<String> authorList = List.of(user.getFavoriteAuthors().split("\\s*,\\s*"));
+        List<String> authorList = new ArrayList<String>();
+
+        if(user.getFavoriteAuthors() != null) {
+            authorList = List.of(user.getFavoriteAuthors().split("\\s*,\\s*"));
+        }
 
         return bookRepository.findByStatusAndBookAuthorsNameIn("AVAILABLE", authorList);
     }

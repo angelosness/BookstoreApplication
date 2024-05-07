@@ -31,8 +31,12 @@ public abstract class TemplateRecommendationsStrategy implements Recommendations
             }
         }
 
-        //Now, shuffle the results and return maximum 10 books
+        //Now, shuffle the results
         Collections.shuffle(finalList);
+
+        if(finalList.size()>10) {
+            finalList = finalList.subList(0,10);
+        }
 
         return finalList;
     }
