@@ -17,6 +17,6 @@ public class RecommendationsAuthorsAndCategories extends TemplateRecommendations
             authorList = List.of(user.getFavoriteAuthors().split("\\s*,\\s*"));
         }
 
-        return bookRepository.findByStatusAndBookCategoryInOrBookAuthorsNameIn("AVAILABLE", user.getFavoriteCategories(), authorList);
+        return bookRepository.findByStatusAndBookAuthorsNameInOrStatusAndBookCategoryIn("AVAILABLE", authorList, "AVAILABLE", user.getFavoriteCategories());
     }
 }
