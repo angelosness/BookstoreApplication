@@ -92,7 +92,7 @@ public class UserController {
     public String sendRequest(@RequestParam("bookId") int theId) {
         userService.requestBook(SecurityContextHolder.getContext().getAuthentication().getName(), theId);
 
-        return "redirect:/";
+        return "redirect:/?success";
     }
 
     @RequestMapping("/profile")
@@ -111,7 +111,7 @@ public class UserController {
     @RequestMapping("/offer/complete")
     public String completeOffer(@ModelAttribute("book") Book theBook) {
         userService.addOffer(SecurityContextHolder.getContext().getAuthentication().getName(), theBook);
-        return "redirect:/";
+        return "redirect:/offer?success";
     }
 
     @RequestMapping("/search")
@@ -147,7 +147,7 @@ public class UserController {
     public String updateProfile(@ModelAttribute("formdata") ProfileDTO profileData) {
         userService.updateUser(profileData);
 
-        return "redirect:/";
+        return "redirect:/profile?success";
     }
 
     @RequestMapping("/list/give")

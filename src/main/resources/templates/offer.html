@@ -9,6 +9,7 @@
     <link rel="stylesheet" th:href="@{css_files/style.css}">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="icon" th:href="@{images/site_icon.png}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <title>Offer a Book</title>
 </head>
@@ -49,6 +50,11 @@
 <div class="container">
     <h3>Add an Offer</h3>
     <hr>
+
+    <div th:if="${param.success}" class="alert alert-success" style="width: 40%;">
+        Your Book Offer has been successful!
+    </div>
+
     <form th:action="@{/offer/complete}"
       th:object="${book}" method="POST">
 
@@ -98,4 +104,13 @@
     </div>
 </div>
 </body>
+
+<script>
+    window.setTimeout(function(){
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 4000);
+</script>
+
 </html>

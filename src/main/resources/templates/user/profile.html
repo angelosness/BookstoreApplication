@@ -21,6 +21,8 @@
 
     <link rel="icon" th:href="@{images/site_icon.png}" href="http://example.com/favicon.ico" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <title>Profile Page</title>
 
 </head>
@@ -62,6 +64,11 @@
 <div class="container">
     <h3>Your Profile</h3>
     <hr>
+
+    <div th:if="${param.success}" class="alert alert-success" style="width: 35%;">
+        Your Profile has been updated!
+    </div>
+
     <form th:action="@{/profile/save}"
           th:object="${formdata}" method="POST">
 
@@ -130,4 +137,13 @@
 </div>
 
 </body>
+
+<script>
+    window.setTimeout(function(){
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 4000);
+</script>
+
 </html>

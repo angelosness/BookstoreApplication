@@ -22,6 +22,8 @@
 
     <link rel="icon" th:href="@{images/site_icon.png}"/>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <title>Homescreen</title>
 
 </head>
@@ -64,6 +66,10 @@
     <div class="appName">
         <H1>Bookstore Application</H1>
     </div>
+</div>
+
+<div th:if="${param.success}" class="alert alert-success mx-auto w-25" style="padding-bottom: 20px">
+    Request Sent!
 </div>
 
 <form th:action="@{/search}"
@@ -248,4 +254,10 @@
     function navigateToUrl(url) {
         window.location.href = url;
     }
+
+    window.setTimeout(function(){
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 4000);
 </script>

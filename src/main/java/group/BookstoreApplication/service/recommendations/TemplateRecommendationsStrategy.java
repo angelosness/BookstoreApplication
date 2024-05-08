@@ -31,7 +31,7 @@ public abstract class TemplateRecommendationsStrategy implements Recommendations
             }
         }
 
-        //Now, shuffle the results
+        //shuffle the results and limit by 10
         Collections.shuffle(finalList);
 
         if(finalList.size()>10) {
