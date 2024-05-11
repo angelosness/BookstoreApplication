@@ -25,6 +25,12 @@ public class BookCategory {
         books = new ArrayList<Book>();
     }
 
+    public BookCategory(String name) {
+        super();
+        this.name = name;
+        books = new ArrayList<Book>();
+    }
+
     public int getId() {
         return id;
     }

@@ -25,6 +25,12 @@ public class BookAuthor {
         books = new ArrayList<Book>();
     }
 
+    public BookAuthor(String name) {
+        super();
+        this.name = name;
+        books = new ArrayList<Book>();
+    }
+
     public int getId() {
         return id;
     }

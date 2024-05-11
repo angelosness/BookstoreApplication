@@ -65,6 +65,13 @@ public class User implements UserDetails {
         requestedBooks = new ArrayList<Book>();
     }
 
+    public User(int id) {
+        super();
+        this.id = id;
+        favoriteCategories = new ArrayList<BookCategory>();
+        bookOffers = new ArrayList<Book>();
+    }
+
     public int getId() {
         return id;
     }

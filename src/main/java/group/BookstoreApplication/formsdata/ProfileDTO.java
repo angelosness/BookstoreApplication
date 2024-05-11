@@ -21,6 +21,11 @@ public class ProfileDTO {
         }
     }
 
+    public ProfileDTO(User user, List<String> categories) {
+        this.user = user;
+        this.categories = categories;
+    }
+
     public User getUser() {
         return user;
     }

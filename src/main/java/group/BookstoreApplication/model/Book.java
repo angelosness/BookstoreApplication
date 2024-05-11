@@ -59,6 +59,21 @@ public class Book {
         requestingUsers = new ArrayList<User>();
     }
 
+    public Book(String title, List<BookAuthor> bookAuthors, BookCategory bookCategory, String summary) {
+        super();
+        this.title = title;
+        this.bookAuthors = bookAuthors;
+        this.bookCategory = bookCategory;
+        this.summary = summary;
+    }
+
+    public Book(String title, List<BookAuthor> bookAuthors) {
+        super();
+        this.title = title;
+        this.bookAuthors = bookAuthors;
+        requestingUsers = new ArrayList<User>();
+    }
+
     public int getId() {
         return id;
     }

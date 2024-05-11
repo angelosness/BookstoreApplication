@@ -5,6 +5,16 @@ public class SearchDTO {
     private String authors;
     private String searchStrategy;
 
+
+    public SearchDTO() {
+
+    }
+
+    public SearchDTO(String authors, String searchStrategy) {
+        this.authors = authors;
+        this.searchStrategy = searchStrategy;
+    }
+
     //Setters and getters:
     public void setTitle (String title){
         this.title = title;
