@@ -11,6 +11,11 @@ public class ProfileDTO {
     private User user;
     private List<String> categories;
 
+
+    public ProfileDTO() {
+
+    }
+
     public ProfileDTO(User user) {
         this.user = user;
         categories = new ArrayList<String>();
