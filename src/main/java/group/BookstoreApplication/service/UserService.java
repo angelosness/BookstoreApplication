@@ -11,7 +11,7 @@ import java.util.List;
 public interface UserService {
     public boolean userRegister(User theUser);
 
-    public void addOffer(String username, Book theBook);
+    public boolean addOffer(String username, Book theBook);
 
     public List<BookCategory> retrieveCategories();
 

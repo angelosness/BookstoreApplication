@@ -110,8 +110,8 @@ public class UserController {
 
     @RequestMapping("/offer/complete")
     public String completeOffer(@ModelAttribute("book") Book theBook) {
-        userService.addOffer(SecurityContextHolder.getContext().getAuthentication().getName(), theBook);
-        return "redirect:/offer?success";
+        if (userService.addOffer(SecurityContextHolder.getContext().getAuthentication().getName(), theBook)) return "redirect:/offer?success";
+        else return "redirect:/offer?error";
     }
 
     @RequestMapping("/search")

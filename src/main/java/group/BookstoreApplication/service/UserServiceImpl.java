@@ -56,13 +56,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void addOffer(String username, Book theBook) {
+    public boolean addOffer(String username, Book theBook) {
         List<BookAuthor> authorsList = theBook.getBookAuthors();
 
         List<BookAuthor> finalList = new ArrayList<BookAuthor>();
         for (BookAuthor author : authorsList) {
             // check if field is empty
-            String authorName = author.getName();
+            String authorName = author.getName().trim().replaceAll(" +", " ");     // removes spaces appropriately
+            author.setName(authorName);
+
             if (!authorName.isEmpty()) {
                 // check if author already exists in db
                 // retrieve author's book list and update it
@@ -73,7 +75,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                     author.getBooks().add(theBook);
                 }
 
-                finalList.add(author);
+                if (!finalList.stream().map(BookAuthor::getName).toList().contains(authorName))     // check for duplicates
+                    finalList.add(author);
+                else return false;
             }
         }
         theBook.setBookAuthors(finalList);
@@ -92,6 +96,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         // update user
         userRepository.save(theUser);
+
+        return true;
     }
 
     @Override

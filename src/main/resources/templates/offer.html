@@ -55,6 +55,11 @@
         Your Book Offer has been successful!
     </div>
 
+    <div th:if="${param.error}" class="alert alert-danger" style="width: 40%;">
+        Your Book Offer has not been successful!
+        You entered an Author two or more times.
+    </div>
+
     <form th:action="@{/offer/complete}"
       th:object="${book}" method="POST">
 
