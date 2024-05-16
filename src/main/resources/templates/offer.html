@@ -73,7 +73,7 @@
         <label style="margin-bottom: 10px" >Author(s)</label>
         <br>
         <input type="text" th:each="author, itemStat: *{bookAuthors}" th:field="*{bookAuthors[__${itemStat.index}__].name}"
-            class="form-control mb-4 col-3" style="width:40%" placeholder="Enter Author Name" th:required="${itemStat.index==0}">
+            class="form-control mb-4 col-3" style="width:40%" placeholder="Enter Author Name" th:required="${itemStat.index==0}" pattern=".*\S+.*">    <!--pattern for not allowing only spaces-->
 
         <label for="bookCategory" style="margin-bottom: 10px">Category</label>
         <br>
