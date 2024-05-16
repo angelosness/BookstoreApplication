@@ -61,19 +61,19 @@
     </div>
 
     <form th:action="@{/offer/complete}"
-      th:object="${book}" method="POST">
+        th:object="${book}" method="POST">
 
         <input type="hidden" th:field="*{id}">
 
         <label for="bookTitle" style="margin-bottom: 10px">Title</label>
         <br>
         <input type="text" th:field="*{title}"
-               class="form-control mb-4 col-4" style="width:40%" id="bookTitle" placeholder="Enter Book Title" required>
+               class="form-control mb-4 col-4" style="width:40%" id="bookTitle" placeholder="Enter Book Title" required pattern=".*\S+.*" title="Must contain at least one non-blank character">
 
         <label style="margin-bottom: 10px" >Author(s)</label>
         <br>
         <input type="text" th:each="author, itemStat: *{bookAuthors}" th:field="*{bookAuthors[__${itemStat.index}__].name}"
-            class="form-control mb-4 col-3" style="width:40%" placeholder="Enter Author Name" th:required="${itemStat.index==0}" pattern=".*\S+.*">    <!--pattern for not allowing only spaces-->
+            class="form-control mb-4 col-3" style="width:40%" placeholder="Enter Author Name" th:required="${itemStat.index==0}" pattern=".*\S+.*" title="Must contain at least one non-blank character">    <!--pattern for not allowing only spaces-->
 
         <label for="bookCategory" style="margin-bottom: 10px">Category</label>
         <br>

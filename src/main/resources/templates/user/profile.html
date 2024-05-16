@@ -70,7 +70,7 @@
     </div>
 
     <form th:action="@{/profile/save}"
-          th:object="${formdata}" method="POST">
+        th:object="${formdata}" method="POST">
 
         <input type="hidden" th:field="*{user.id}">
 
@@ -80,11 +80,11 @@
 
         <label style="margin-bottom: 10px">First Name</label>
         <input type="text" th:field="*{user.firstName}"
-               class="form-control mb-4 col-4" style="width: 35%" placeholder="Enter your First Name" required pattern=".*\S+.*">
+               class="form-control mb-4 col-4" style="width: 35%" placeholder="Enter your First Name" required pattern=".*\S+.*" title="Must contain at least one non-blank character">
 
         <label style="margin-bottom: 10px">Last Name</label>
         <input type="text" th:field="*{user.lastName}"
-               class="form-control mb-4 col-4" style="width: 35%" placeholder="Enter your Last Name" required pattern=".*\S+.*">
+               class="form-control mb-4 col-4" style="width: 35%" placeholder="Enter your Last Name" required pattern=".*\S+.*" title="Must contain at least one non-blank character">
 
         <label style="margin-bottom: 10px">Age</label>
         <input type="number" th:field="*{user.age}"
@@ -92,15 +92,15 @@
 
         <label style="margin-bottom: 10px">Phone Number</label>
         <input type="text" th:field="*{user.phoneNumber}"
-               class="form-control mb-4 col-4" style="width: 35%" placeholder="Enter your Phone Number" pattern=".*\S+.*">
+               class="form-control mb-4 col-4" style="width: 35%" placeholder="Enter your Phone Number" pattern="[0-9]+" title="Must contain at least one digit">
 
         <label style="margin-bottom: 10px">Address</label>
         <input type="text" th:field="*{user.address}"
-               class="form-control mb-4 col-4" style="width: 35%" placeholder="Enter your Address" pattern=".*\S+.*">
+               class="form-control mb-4 col-4" style="width: 35%" placeholder="Enter your Address" pattern=".*\S+.*" title="Must contain at least one non-blank character">
 
         <label style="margin-bottom: 10px">Favorite Authors</label>
         <input type="text" th:field="*{user.favoriteAuthors}"
-               class="form-control mb-4 col-4" style="width: 35%" placeholder="e.g. Mary Ann Shaffer,Annie Barrows" pattern=".*\S+.*">
+               class="form-control mb-4 col-4" style="width: 35%" placeholder="e.g. Mary Ann Shaffer,Annie Barrows" pattern=".*\S+.*" title="Must contain at least one non-blank character">
 
         <label style="margin-bottom: 10px">Favorite Categories</label>
         <select th:field="*{categories}" class="form-control col-2" style="width:20%; height: 150pt;" multiple>
@@ -110,6 +110,8 @@
         <small>Press (Ctrl + Left Click) to select multiple options.</small>
 
         <input type="hidden" th:field="*{user.bookOffers}">
+
+        <input type="hidden" th:field="*{user.requestedBooks}">
         <br><br>
 
         <button type="submit" class="btn btn-primary mb-2">Save</button>
