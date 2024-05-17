@@ -83,17 +83,17 @@
                 <div class="col-md-4">
                     <label style="margin-bottom: 10px">First Name</label>
                     <input type="text" th:field="*{user.firstName}"
-                        class="form-control mb-4 col-4" style="width: 85%" placeholder="Enter your First Name" required pattern=".*\S+.*" title="Must contain at least one non-blank character">
+                        class="form-control mb-4 col-4" style="width: 90%" placeholder="Enter your First Name" required pattern=".*\S+.*" title="Must contain at least one non-blank character">
                 </div>
                 <div class="col-md-4">
                     <label style="margin-bottom: 10px">Last Name</label>
                     <input type="text" th:field="*{user.lastName}"
-                        class="form-control mb-4 col-4" style="width: 85%" placeholder="Enter your Last Name" required pattern=".*\S+.*" title="Must contain at least one non-blank character">
+                        class="form-control mb-4 col-4" style="width: 90%" placeholder="Enter your Last Name" required pattern=".*\S+.*" title="Must contain at least one non-blank character">
                 </div>
                 <div class="col-md-4">
                     <label style="margin-bottom: 10px">Age</label>
                     <input type="number" th:field="*{user.age}"
-                        class="form-control mb-4 col-4" style="width: 25%" placeholder="Enter your Age" min="1" max="100" oninput="validity.valid||(value='');" required>
+                        class="form-control mb-4 col-4" style="width: 30%" placeholder="Enter your Age" min="1" max="100" oninput="validity.valid||(value='');" required>
                 </div>
             </div>
 
@@ -105,12 +105,12 @@
                 <div class="col-md-4">
                     <label style="margin-bottom: 10px">Phone Number</label>
                     <input type="text" th:field="*{user.phoneNumber}"
-                           class="form-control mb-4 col-4" style="width: 85%" placeholder="Enter your Phone Number" pattern="[0-9]+" title="Must contain only digits without spaces in between.">
+                           class="form-control mb-4 col-4" style="width: 90%" placeholder="Enter your Phone Number" pattern="[0-9]+" title="Must contain only digits without spaces in between.">
                 </div>
                 <div class="col-md-4">
                     <label style="margin-bottom: 10px">Address</label>
                     <input type="text" th:field="*{user.address}"
-                           class="form-control mb-4 col-4" style="width: 85%" placeholder="Enter your Address" pattern=".*\S+.*" title="Must contain at least one non-blank character">
+                           class="form-control mb-4 col-4" style="width: 90%" placeholder="Enter your Address" pattern=".*\S+.*" title="Must contain at least one non-blank character">
                 </div>
             </div>
 
@@ -121,7 +121,7 @@
             <div class="row" style="margin:auto; width: 95%;">
                 <div class="col-md-4" style="padding-top: 10px;">
                     <label style="margin: auto; padding-bottom: 10px">Favorite Categories</label>
-                    <select th:field="*{categories}" class="form-control" style="width:85%; height: 160px;" multiple>
+                    <select th:field="*{categories}" class="form-control" style="width:90%; height: 180px;" multiple>
                         <option value="" selected hidden>Choose...</option>
                         <option th:each="category: ${categoryList}" th:value="${category.name}" th:text="${category.name}"></option>
                     </select>
@@ -132,7 +132,7 @@
                 <div class="col-md-4" style="padding-top: 10px;">
                     <label style="margin-bottom: 10px">Favorite Authors</label>
                     <input type="text" id="favorite-authors" th:field="*{user.favoriteAuthors}"
-                           class="form-control mb-4 col-4" style="width: 85%" placeholder="e.g. Mary Ann Shaffer,Annie Barrows" pattern=".*\S+.*" title="Must contain at least one non-blank character">
+                           class="form-control mb-4 col-4" style="width: 90%" placeholder="e.g. Mary Ann Shaffer,Annie Barrows" pattern=".*\S+.*" title="Must contain at least one non-blank character">
                 </div>
             </div>
 
